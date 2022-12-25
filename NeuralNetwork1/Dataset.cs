@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Drawing;
 
-namespace AForge.WindowsForms
+namespace NeuralNetwork1
 {
     class Dataset
     {

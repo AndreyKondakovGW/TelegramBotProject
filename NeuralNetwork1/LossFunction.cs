@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace AForge.WindowsForms
+namespace NeuralNetwork1
 {
     class MSELoss
     {

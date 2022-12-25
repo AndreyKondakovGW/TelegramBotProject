@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Accord.Neuro;
 using Accord.Neuro.Learning;
 
-namespace AForge.WindowsForms
+namespace NeuralNetwork1
 {
     public class StudentNetwork : BaseNetwork
     {

@@ -20,21 +20,23 @@ namespace NeuralNetwork1
 
         private UpdateTLGMessages formUpdater;
 
-        private BaseNetwork perseptron = null;
+        public BaseNetwork accordNet;
+        public BaseNetwork studentNet;
+        public Dictionary<int, string> ind2class = new Dictionary<int, string>();
+
+        public Processor imageProcessor;
         // CancellationToken - инструмент для отмены задач, запущенных в отдельном потоке
         private readonly CancellationTokenSource cts = new CancellationTokenSource();
         public TLGBotik(BaseNetwork net,  UpdateTLGMessages updater)
-        { 
+        {
+            ModelLoader loader = new ModelLoader();
+            accordNet = loader.loadAccordNetwork();
+            studentNet = loader.loadStudentNetwork();
+            ind2class = loader.traindata.ind2class;
+            imageProcessor = new Processor();
             var botKey = System.IO.File.ReadAllText("botkey.txt");
             botik = new Telegram.Bot.TelegramBotClient(botKey);
             formUpdater = updater;
-            perseptron = net;
-        }
-
-        public void SetNet(BaseNetwork net)
-        {
-            perseptron = net;
-            formUpdater("Net updated!");
         }
 
         private async Task HandleUpdateMessageAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
@@ -55,20 +57,25 @@ namespace NeuralNetwork1
                 
                 System.Drawing.Bitmap bm = new System.Drawing.Bitmap(img);
 
-                //  Масштабируем aforge
-                AForge.Imaging.Filters.ResizeBilinear scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(200,200);
-                var uProcessed = scaleFilter.Apply(AForge.Imaging.UnmanagedImage.FromManagedImage(bm));
-
-                Sample sample = GenerateImage.GenerateFigure(uProcessed);
-
-                switch(perseptron.Predict(sample))
+                var processed = imageProcessor.ProcessImage(bm);
+                if (processed == null)
                 {
-                    case FigureType.Rectangle: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, это был прямоугольник!");break;
-                    case FigureType.Circle: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, кружочек!"); break;
-                    case FigureType.Sinusiod: botik.SendTextMessageAsync(message.Chat.Id, "Синусоида!"); break;
-                    case FigureType.Triangle: botik.SendTextMessageAsync(message.Chat.Id, "Это легко, это был треугольник!"); break;
-                    default: botik.SendTextMessageAsync(message.Chat.Id, "Я такого не знаю!"); break;
+                    botik.SendTextMessageAsync(message.Chat.Id, "К сожалению Картинка не подлежит обработке нужна буква на белом фоне");
                 }
+                else{
+                    Sample sampleFromCamera = new Sample(processed, 10);
+                    Console.WriteLine(sampleFromCamera.input.Length);
+                    int ind = accordNet.Predict(sampleFromCamera);
+                    Console.WriteLine($"Aforge На картинке буква: {ind2class[ind]}");
+                    string Accord_class = ind2class[ind];
+                    ind = studentNet.Predict(sampleFromCamera);
+                    Console.WriteLine($"Student На картинке буква: {ind2class[ind]}");
+                    string Student_class = ind2class[ind];
+
+                    botik.SendTextMessageAsync(message.Chat.Id, "Предсказание accord сети: Буква: " + Accord_class);
+                    botik.SendTextMessageAsync(message.Chat.Id, "Предсказание student сети: Буква: " + Accord_class);
+                }
+
 
                 formUpdater("Picture recognized!");
                 return;

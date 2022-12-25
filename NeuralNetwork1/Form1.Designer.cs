@@ -135,7 +135,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             // 
             // label1
             // 
@@ -222,7 +221,6 @@
             this.recreateNetButton.TabIndex = 17;
             this.recreateNetButton.Text = "Пересоздать сеть";
             this.recreateNetButton.UseVisualStyleBackColor = true;
-            this.recreateNetButton.Click += new System.EventHandler(this.button3_Click);
             this.recreateNetButton.MouseEnter += new System.EventHandler(this.recreateNetButton_MouseEnter);
             // 
             // classCounter
@@ -265,7 +263,6 @@
             this.testNetButton.TabIndex = 14;
             this.testNetButton.Text = "Тест";
             this.testNetButton.UseVisualStyleBackColor = true;
-            this.testNetButton.Click += new System.EventHandler(this.button2_Click);
             this.testNetButton.MouseEnter += new System.EventHandler(this.testNetButton_MouseEnter);
             // 
             // netTrainButton
@@ -359,7 +356,6 @@
             this.trainOneButton.TabIndex = 8;
             this.trainOneButton.Text = "Обучить образцу";
             this.trainOneButton.UseVisualStyleBackColor = true;
-            this.trainOneButton.Click += new System.EventHandler(this.btnTrainOne_Click);
             // 
             // progressBar1
             // 

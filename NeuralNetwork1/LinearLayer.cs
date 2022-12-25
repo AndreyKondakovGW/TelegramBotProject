@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 
-namespace AForge.WindowsForms
+namespace NeuralNetwork1
 {
     class LinearLayer : Layer
     {
