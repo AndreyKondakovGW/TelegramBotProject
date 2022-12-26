@@ -17,6 +17,7 @@ namespace NeuralNetwork1
     class TLGBotik
     {
         public Telegram.Bot.TelegramBotClient botik = null;
+        public AIMLBotik aimlBot;
 
         private UpdateTLGMessages formUpdater;
 
@@ -37,6 +38,7 @@ namespace NeuralNetwork1
             var botKey = System.IO.File.ReadAllText("botkey.txt");
             botik = new Telegram.Bot.TelegramBotClient(botKey);
             formUpdater = updater;
+            aimlBot = new AIMLBotik();
         }
 
         private async Task HandleUpdateMessageAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
@@ -60,7 +62,7 @@ namespace NeuralNetwork1
                 var processed = imageProcessor.ProcessImage(bm);
                 if (processed == null)
                 {
-                    botik.SendTextMessageAsync(message.Chat.Id, "К сожалению Картинка не подлежит обработке нужна буква на белом фоне");
+                    await botik.SendTextMessageAsync(message.Chat.Id, "К сожалению Картинка не подлежит обработке нужна буква на белом фоне");
                 }
                 else{
                     Sample sampleFromCamera = new Sample(processed, 10);
@@ -72,22 +74,36 @@ namespace NeuralNetwork1
                     Console.WriteLine($"Student На картинке буква: {ind2class[ind]}");
                     string Student_class = ind2class[ind];
 
-                    botik.SendTextMessageAsync(message.Chat.Id, "Предсказание accord сети: Буква: " + Accord_class);
-                    botik.SendTextMessageAsync(message.Chat.Id, "Предсказание student сети: Буква: " + Accord_class);
+                    aimlBot.Talk(message.Chat.Id, message.Chat.FirstName, "буква " + Student_class);
+
+                    await botik.SendTextMessageAsync(message.Chat.Id, "Предсказание accord сети: Буква: " + Accord_class);
+                    await botik.SendTextMessageAsync(message.Chat.Id, "Предсказание student сети: Буква: " + Student_class);
                 }
 
 
                 formUpdater("Picture recognized!");
                 return;
             }
-
+            //aiml
+            if (message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
+            {
+                var answer = aimlBot.Talk(message.Chat.Id,message.Chat.FirstName ,message.Text);
+                if (answer == "")
+                {
+                    formUpdater("update variable");
+                    return;
+                }
+                await botik.SendTextMessageAsync(message.Chat.Id, answer);
+                formUpdater(answer);
+                return;
+            }
             if (message == null || message.Type != MessageType.Text) return;
             if(message.Text == "Authors")
             {
                 string authors = "Гаянэ Аршакян, Луспарон Тызыхян, Дамир Казеев, Роман Хыдыров, Владимир Садовский, Анастасия Аскерова, Константин Бервинов, и Борис Трикоз (но он уже спать ушел) и молчаливый Даниил Ярошенко, а год спустя ещё Иванченко Вячеслав";
-                botik.SendTextMessageAsync(message.Chat.Id, "Авторы проекта : " + authors);
+                await botik.SendTextMessageAsync(message.Chat.Id, "Авторы проекта : " + authors);
             }
-            botik.SendTextMessageAsync(message.Chat.Id, "Bot reply : " + message.Text);
+           await botik.SendTextMessageAsync(message.Chat.Id, "Bot reply : " + message.Text);
             formUpdater(message.Text);
             return;
         }

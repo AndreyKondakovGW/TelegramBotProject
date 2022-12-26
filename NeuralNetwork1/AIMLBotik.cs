@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AIMLbot;
+using AIMLbot.AIMLTagHandlers;
 
 namespace NeuralNetwork1
 {
@@ -11,6 +12,7 @@ namespace NeuralNetwork1
     {
         Bot myBot;
         User myUser;  ///   map[TLGUserID] -> AIML User ID
+        readonly Dictionary<long, User> users = new Dictionary<long, User>();
 
         public AIMLBotik()
         {
@@ -22,11 +24,23 @@ namespace NeuralNetwork1
             myBot.isAcceptingUserInput = true;
         }
 
-        public string Talk(string phrase)
+        public string Talk(long userId, string userName, string phrase)
         {
-            Request r = new Request(phrase, myUser, myBot);
-            Result res = myBot.Chat(r);
-            return res.Output;
+            var result = "";
+            User user;
+            if (!users.ContainsKey(userId))
+            {
+                user = new User(userId.ToString(), myBot);
+                users.Add(userId, user);
+                Request r = new Request($"Меня зовут {userName}", user, myBot);
+                result += myBot.Chat(r).Output + System.Environment.NewLine;
+            }
+            else
+            {
+                user = users[userId];
+            }
+            result += myBot.Chat(new Request(phrase, user, myBot)).Output;
+            return result;
         }
     }
 }

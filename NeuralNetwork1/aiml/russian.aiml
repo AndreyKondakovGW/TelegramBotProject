@@ -1,112 +1,741 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<!-- ACQUAINTANCE -->
 
 <aiml>
-<category>
-	<pattern>КТО ТЫ</pattern>
-	<template>
-			<random>
-                <li>Я – что-то вроде робота, искусственный интеллект.</li>
-                <li>Я чат-бот, который разговаривает с людьми в Телеграме.</li>
-            </random>
-	</template>
-</category>
+  <!-- Представляется -->
 
-<category>
-        <pattern>РАССКАЖИ О СЕБЕ</pattern>
-        <template>
-            <srai>КТО ТЫ</srai>
-        </template>
-    </category>
+  <category>
+    <pattern>_ меня зовут *</pattern>
+    <template>
+      <srai>
+        меня зовут <star/>
+      </srai>
+    </template>
+  </category>
 
-    <category>
-        <pattern>ТЫ КТО</pattern>
-        <template>
-            <srai>КТО ТЫ</srai>
-        </template>
-    </category>
-	
-<!-- AGE -->	
-	
-<category>
-	<pattern>СКОЛЬКО ТЕБЕ ЛЕТ</pattern>
-	<template>У меня нет возраста, я с каждым днём становлюсь только новее.</template>
-</category> 
-	
-<!-- HOW_ARE_YOU -->	
-	
-<category><pattern>КАК ДЕЛА</pattern>
-        <template>
-            <random>
-                <li>Всё хорошо. Как у тебя дела?</li>
-                <li>Всё хорошо! Как жизнь?</li>
-                <li>Радуюсь жизни в твоём девайсе.</li>
-                <li>У меня всё чудесно. Спасибо, что интересуешься.</li>
-            </random>
-        </template>
-</category>
+  <category>
+    <pattern>меня зовут *</pattern>
+    <template>
+      <random>
+        <li>
+          Здравствуйте, <set name="user-name">
+            <star />
+          </set>!
+        </li>
+        <li>
+          Добро пожаловать, <set name="user-name">
+            <star />
+          </set>!
+        </li>
+      </random>
+    </template>
+  </category>
 
-<category>
-        <pattern>ЧТО НОВОГО</pattern>
-        <template>
-            <srai>КАК ДЕЛА</srai>
-        </template>
-    </category>
+  <category>
+    <pattern>кто ты</pattern>
+    <template>
+      Я бот по распознаванию греческих букв, <get name="user-name" />. Меня создали Андрей Кондаков, Сергей Горшков и Ковярова Екатерина.
+    </template>
+  </category>
 
-    <category>
-        <pattern>КАК ОНО ВООБЩЕ</pattern>
-        <template>
-            <srai>КАК ДЕЛА</srai>
-        </template>
-    </category>
+  <category>
+    <pattern>_ кто ты</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
+  <category>
+    <pattern>_ кто ты_</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
 
-    <category>
-        <pattern>ЧТО НОВЕНЬКОГО</pattern>
-        <template>
-            <srai>КАК ДЕЛА</srai>
-        </template>
-    </category>
-	
-	<category>
-        <pattern>КАК ТЫ</pattern>
-        <template>
-            <srai>КАК ДЕЛА</srai>
-        </template>
-    </category>
-	
-<!-- ANSWER MY QUESTION -->
+  <category>
+    <pattern>_ кто ты _</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
 
-<category><pattern>У МЕНЯ ЕСТЬ ВОПРОС</pattern>
-        <template>С удовольствием отвечу. А в чём, собственно, вопрос?</template>
-</category>
+  <category>
+    <pattern>кто ты_</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
 
-<category>
-        <pattern>ОТВЕТЬ</pattern>
-        <template>
-            <srai>У МЕНЯ ЕСТЬ ВОПРОС</srai>
-        </template>
-    </category>
+  <category>
+    <pattern>кто ты _</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
 
-    <category>
-        <pattern>ОТВЕТЬ НА МОЙ ВОПРОС</pattern>
-        <template>
-            <srai>У МЕНЯ ЕСТЬ ВОПРОС</srai>
-        </template>
-    </category>
+  <category>
+    <pattern>расскажи о себе</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
 
-    <category>
-        <pattern>ДАЙ МНЕ ОТВЕТ</pattern>
-        <template>
-            <srai>У МЕНЯ ЕСТЬ ВОПРОС</srai>
-        </template>
-    </category>
-	
-	<category>
-        <pattern>МОЖЕШЬ ОТВЕТИТЬ</pattern>
-        <template>
-            <srai>У МЕНЯ ЕСТЬ ВОПРОС</srai>
-        </template>
-    </category>
+  <category>
+    <pattern>_ расскажи о себе</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ расскажи о себе_</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ расскажи о себе _</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>расскажи о себе _</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>расскажи о себе_</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
+
+
+  <!-- что умеет -->
+
+  <category>
+    <pattern>что ты умеешь</pattern>
+    <template>
+      Распознавать букву греческого алфавита с фотографии.
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ что ты умеешь</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ что ты умеешь_</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ что ты умеешь _</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>что ты умеешь_</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>что ты умеешь _</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>что ты можешь</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ что ты можешь</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ что ты можешь_</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ что ты можешь _</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>что ты можешь _</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>что ты можешь_</pattern>
+    <template>
+      <srai>что ты умеешь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>тобой пользоваться</pattern>
+    <template>
+      Напиши на белом листе греческую букву и отправь мне фотографию. Я скажу, что это за буква.
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ тобой пользоваться</pattern>
+    <template>
+      <srai>тобой пользоваться</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ тобой пользоваться_</pattern>
+    <template>
+      <srai>тобой пользоваться</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ тобой пользоваться _</pattern>
+    <template>
+      <srai>тобой пользоваться</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ тебя использовать</pattern>
+    <template>
+      <srai>тобой пользоваться</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ тебя использовать_</pattern>
+    <template>
+      <srai>тобой пользоваться</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ тебя использовать _</pattern>
+    <template>
+      <srai>тобой пользоваться</srai>
+    </template>
+  </category>
+
+  <!-- расскажи о * -->
+
+  <category>
+    <pattern>расскажи о *</pattern>
+    <template>
+      <think>
+        <set name="image">
+          <star />
+        </set>
+      </think>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ расскажи о *</pattern>
+    <template>
+      <srai>
+        расскажи о <star/>
+      </srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ расскажи об *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>расскажи об *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>_ расскажи про *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>расскажи про *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>_ расскажи _ о *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ расскажи _ об *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>расскажи _ об *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ расскажи _ про *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>расскажи _ про *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>что _ про *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>_ что _ про *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>что _ об *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>_ что _ об *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>что _ о *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>_ что _ о *</pattern>
+    <template>
+      <srai>расскажи о <star/>
+    </srai>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>еще</pattern>
+    <template>
+      <srai>
+        <get name="image" /> 2
+      </srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>ещё</pattern>
+    <template>
+      <srai>
+        еще
+      </srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ еще</pattern>
+    <template>
+      <srai>еще</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ ещё</pattern>
+    <template>
+      <srai>еще</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ еще_</pattern>
+    <template>
+      <srai>еще</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ ещё_</pattern>
+    <template>
+      <srai>еще</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ еще _</pattern>
+    <template>
+      <srai>еще</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ ещё _</pattern>
+    <template>
+      <srai>еще</srai>
+    </template>
+  </category>
+
+  
+  
+  <category>
+    <pattern>о чем</pattern>
+    <template>
+      о букве <get name="image"/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>о чем _ *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>о чем *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>о чём _ *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>о чём *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>про что *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>про что _ *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>_ о чем _ *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ о чём _ *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ о чем *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ о чём *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ про что _ *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_ про что *</pattern>
+    <template>
+      <sr/>
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>говорим</pattern>
+    <template>
+      <srai>о чем</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>разговариваем</pattern>
+    <template>
+      <srai>о чем</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>речь</pattern>
+    <template>
+      <srai>о чем</srai>
+    </template>
+  </category>
+
+  <!-- Факты об образах -->
+
+  <category>
+    <pattern>буква *</pattern>
+    <template>
+      <think>
+        <set name="image">
+          <star />
+        </set>
+      </think>
+    </template>
+  </category>
+
+  <category>
+    <pattern>fi</pattern>
+    <template>
+      Это двадцать первая буква греческого алфавита
+    </template>
+  </category>
+
+  <category>
+    <pattern>fi 2</pattern>
+    <template>
+      В древнейших вариантах греческого алфавита буква fi отсутствовала. В отличие от большинства других греческих букв, которые происходят от финикийских, fi не имеет финикийского прообраза, и её происхождение неясно.
+    </template>
+  </category>
+
+  <category>
+    <pattern>hi</pattern>
+    <template>
+      Это двадцать вторая буква греческого алфавита
+    </template>
+  </category>
+
+  <category>
+    <pattern>hi 2</pattern>
+    <template>
+      Факт 2
+    </template>
+  </category>
+
+  <category>
+    <pattern>ksi</pattern>
+    <template>
+      Это четырнадцатая буква греческого алфавита
+    </template>
+  </category>
+
+  <category>
+    <pattern>ksi 2</pattern>
+    <template>
+      Факт 2
+    </template>
+  </category>
+
+  <category>
+    <pattern>o</pattern>
+    <template>
+      Это пятнадцатая буква греческого алфавита
+    </template>
+  </category>
+
+  <category>
+    <pattern>o 2</pattern>
+    <template>
+      Факт 2
+    </template>
+  </category>
+
+  <category>
+    <pattern>pi</pattern>
+    <template>
+      Это шестандцатая буква греческого алфавита
+    </template>
+  </category>
+
+  <category>
+    <pattern>pi 2</pattern>
+    <template>
+      Факт 2
+    </template>
+  </category>
+
+  <category>
+    <pattern>ro</pattern>
+    <template>
+      Это семнадцатая буква греческого алфавита
+    </template>
+  </category>
+
+  <category>
+    <pattern>ro 2</pattern>
+    <template>
+      Факт 2
+    </template>
+  </category>
+
+  <category>
+    <pattern>sigma</pattern>
+    <template>
+      Это восемнадцатая буква греческого алфавита
+    </template>
+  </category>
+
+  <category>
+    <pattern>sigma 2</pattern>
+    <template>
+      Факт 2
+    </template>
+  </category>
+
+  <category>
+    <pattern>tau</pattern>
+    <template>
+      Это девятнадцатая буква греческого алфавита
+    </template>
+  </category>
+
+  <category>
+    <pattern>tau 2</pattern>
+    <template>
+      Факт 2
+    </template>
+  </category>
+
+  <category>
+    <pattern>u</pattern>
+    <template>
+      Это двадцатая буква греческого алфавита
+    </template>
+  </category>
+
+  <category>
+    <pattern>u 2</pattern>
+    <template>
+      Факт 2
+    </template>
+  </category>
+
+  <category>
+    <pattern>w</pattern>
+    <template>
+      Это двадцать четвертая буква греческого алфавита
+    </template>
+  </category>
+
+  <category>
+    <pattern>w 2</pattern>
+    <template>
+      Факт 2
+    </template>
+  </category>
+
+  <category>
+    <pattern>*</pattern>
+    <template>
+      Я такое не знаю, <get name="user-name"/>
+    </template>
+  </category>
 
 </aiml>
